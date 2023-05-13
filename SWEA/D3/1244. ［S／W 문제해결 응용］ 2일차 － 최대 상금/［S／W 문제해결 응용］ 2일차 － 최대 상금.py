@@ -9,10 +9,10 @@ def dfs(n):
         for j in range(i+1,L):
             lst[i],lst[j] = lst[j],lst[i]
 
-            chk = int(''.join(map(str,lst)))
-            if (n, chk) not in v:
+            chk = int(''.join(map(str,lst)))*10+n
+            if chk not in v:
                 dfs(n+1)
-                v.append((n,chk))
+                v.append(chk)
             lst[i],lst[j] = lst[j],lst[i]
 
 T = int(input())
