@@ -6,10 +6,7 @@ def solution(s):
     while len(s) != 1:
         zero = len(s) - s.count('0') # 0 제거후 길이
         zero_cnt += s.count('0')
-        char = str(bin(zero))
-        s=''
-        for i in range(2,len(char)):
-            s += char[i]
+        s=bin(zero)[2:]
         cnt+=1
         
     return [cnt,zero_cnt]
