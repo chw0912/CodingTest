@@ -4,7 +4,6 @@ def solution(k, tangerine):
     answer = 0
     
     arr = Counter(tangerine)
-    
     cnt = [v for v in arr.values()]
 
     cnt.sort(reverse=True)
@@ -14,6 +13,5 @@ def solution(k, tangerine):
         answer += 1
         if k <= 0:
             break
-    
     
     return answer
