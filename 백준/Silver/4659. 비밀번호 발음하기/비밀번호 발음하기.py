@@ -14,7 +14,7 @@ while(1):
     v_cnt = 0
     c_cnt = 0
 
-    # 같은 글자 2번 연속되는지 확인하기
+    # 발음 (가능 : 0 / 불가능 : 1)
     err = 0
 
     for i in range(len(word)):
