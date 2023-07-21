@@ -1,42 +1,45 @@
+# Silver 4 10866. 덱
+
 from collections import deque
 import sys
 
-d = deque()
-n = int(input())
+N = int(input())
 
-for i in range(n):
+dq = deque()
+
+for n in range(N):
     command = sys.stdin.readline().split()
 
-    if command[0] == "push_front":
-        d.appendleft(command[1])
-    elif command[0] == "push_back":
-        d.append(command[1])
-    elif command[0] == "pop_front":
-        if d:
-            print(d[0])    
-            d.popleft()
+    if command[0] == 'push_front':
+        dq.appendleft(command[1])
+    elif command[0] == 'push_back':
+        dq.append(command[1])
+    elif command[0] == 'pop_front':
+        if dq:
+            print(dq[0])
+            dq.popleft()
         else:
-            print("-1")
-    elif command[0] == "pop_back":
-        if d:
-            print(d[len(d) - 1])    
-            d.pop()
+            print(-1)
+    elif command[0] == 'pop_back':
+        if dq:
+            print(dq[-1])
+            dq.pop()
         else:
-            print("-1")
-    elif command[0] == "size":
-        print(len(d))
-    elif command[0] == "empty":
-        if d:
-            print("0")
+            print(-1)
+    elif command[0] == 'size':
+        print(len(dq))
+    elif command[0] == 'empty':
+        if dq:
+            print(0)
         else:
-            print("1")
-    elif command[0] == "front":
-        if d:
-            print(d[0])
+            print(1)
+    elif command[0] == 'front':
+        if dq:
+            print(dq[0])
         else:
-            print("-1")
-    elif command[0] == "back":
-        if d:
-            print(d[len(d) - 1])
+            print(-1)
+    elif command[0] == 'back':
+        if dq:
+            print(dq[-1])
         else:
-            print("-1")
+            print(-1)
