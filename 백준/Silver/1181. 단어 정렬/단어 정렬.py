@@ -1,8 +1,9 @@
 # Silver 5. 단어 정렬
+import sys
 
-N = int(input())
+N = int(sys.stdin.readline())
 
-lst = list(input() for _ in range(N))
+lst = list(sys.stdin.readline().strip() for _ in range(N))
 
 set_lst = list(set(lst))
 
