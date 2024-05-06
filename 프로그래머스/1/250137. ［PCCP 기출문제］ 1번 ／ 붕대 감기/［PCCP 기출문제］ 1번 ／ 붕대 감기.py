@@ -5,7 +5,7 @@ def solution(bandage, health, attacks):
     # 최대 체력
     max_HP = health
     # 시전 시간, 초당 회복량, 추가 회복량 
-    t, x, y = bandage[0],bandage[1],bandage[2]
+    t, x, y = bandage
     
     
     # 게임 시간 생성
