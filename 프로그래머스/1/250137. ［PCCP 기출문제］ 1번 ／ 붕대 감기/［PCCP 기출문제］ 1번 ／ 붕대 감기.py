@@ -21,9 +21,11 @@ def solution(bandage, health, attacks):
         if play_Time[i] == 0:
             health += x
             count += 1
+            #연속 성공시
             if count == t:
                 health += y
                 count = 0
+            # 최대 체력을 넘거나 같을 경우 
             if health >= max_HP:
                 health = max_HP
         else:
@@ -32,6 +34,4 @@ def solution(bandage, health, attacks):
             if health <= 0:
                 health = -1
                 break
-        
-        print()
     return health
