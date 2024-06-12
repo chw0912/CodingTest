@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, M = map(int, input().split()) # 집의 개수(N), 장마 기간(M)
+k = list(map(int, input().split())) # 마을 땅 높이
+
+rain = set()
+
+for i in range(M):
+	s, e = map(int,input().split())
+	for j in range(s-1,e):
+		k[j] += 1
+		rain.add(j)
+	if i % 3 == 2:
+		for j in rain:
+			k[j] -= 1
+		rain = set()
+		
+print(*k)
