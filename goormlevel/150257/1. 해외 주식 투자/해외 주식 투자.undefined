@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+import math
+N = int(input())
+stock_held = [] # 평가금액
+
+# 평가금액 = 1개 기준 가격(v) * 보유 주식 개수(w)
+for _ in range(N):
+	v,w = map(float, input().split())
+	stock_held.append(math.trunc(v*w*10))
+
+
+# 평가금액이 높은 순대로 인덱스 정렬
+sorted_arr = sorted(range(N),key=lambda k:stock_held[k],reverse=True)
+#인덱스 + 1 출력
+for idx in sorted_arr:
+	print(idx+1,end=' ')
