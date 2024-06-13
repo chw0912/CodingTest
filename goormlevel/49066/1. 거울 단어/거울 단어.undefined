@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+# 거울 단어
+mirror = {'b': 'd', 'd': 'b', 'i': 'i', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'q', 'q': 'p', 's': 'z', 'z': 's',
+          'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x'}
+
+N = int(input())  # 입력 단어 개수
+
+# 테스트 케이스
+for n in range(N):
+	# 입력받은 단어 리스트화
+	word = list(input())
+
+	if len(word) == 1:
+		if word[0] not in mirror:
+			print('Normal')
+		elif word[0] in ['b','p','s','d','q','z']:
+			print('Normal')
+		else:
+			print('Mirror')
+		continue
+		
+	check_len = len(word) // 2
+	# 단어의 길이가 짝수일 경우
+	if len(word) % 2 == 0:
+			check = []  # word의 거울 단어
+			# 단어 길이의 절반만큼 반복
+			for i in range(check_len):
+					# 거울 단어에 해당 단어가 있으면
+					if word[i] in mirror:
+							check.append(mirror[word[i]])
+					# 없으면 거울단어가 아니므로 'Normal' 출력후 break
+					else:
+							break
+			# 거울 단어를 reverse 후 판별
+			if word[check_len:] == list(reversed(check)):
+					print('Mirror')
+			else:
+					print('Normal')
+	# 단어의 길이가 홀수인 경우
+	else:
+			if word[check_len] not in mirror:
+					print('Normal')
+			else:
+					check = []
+					for i in range(check_len):
+							# 거울 단어에 해당 단어가 있으면
+							if word[i] in mirror:
+									check.append(mirror[word[i]])
+							# 없으면 거울단어가 아니므로 'Normal' 출력후 break
+							else:
+									break
+					# 거울 단어를 reverse 후 판별
+					if word[check_len + 1:] == list(reversed(check)):
+							print('Mirror')
+					else:
+							print('Normal')
