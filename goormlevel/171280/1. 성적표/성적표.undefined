@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, M = map(int, input().split())
+
+subject = [0] * M
+count = [0] * M
+average = [0] * M
+max_score = -1
+max_index = -1
+
+for n in range(N):
+	c, s = map(int,input().split())
+	
+	subject[c-1] += s
+	count[c-1] += 1
+
+for m in range(M):
+	if subject[m] != 0:
+		average[m] = subject[m]/count[m]
+	
+print(average.index(max(average))+1)
