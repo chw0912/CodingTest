@@ -1,11 +1,10 @@
 class Solution {
     fun solution(start_num: Int, end_num: Int): IntArray {
-        var answer = ArrayList<Int>()
+        var answer: IntArray = intArrayOf()
         
         for (i in start_num downTo end_num) {
-            answer.add(i)
+            answer += i
         }
-        
-        return answer.toIntArray()
+        return answer
     }
 }
