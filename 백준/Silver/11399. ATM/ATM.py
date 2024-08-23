@@ -5,11 +5,9 @@ input = sys.stdin.readline
 
 N = int(input())
 times = sorted(list(map(int, input().split())))
-sum = 0
-tmp = 0
+result = 0
 
-for time in times:
-    tmp = tmp + time
-    sum += tmp
+for i in range(N):
+    result += times[i] * (N-i)
 
-print(sum)
+print(result)
