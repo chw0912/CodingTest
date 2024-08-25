@@ -1,37 +1,37 @@
 # Silver 4. 큐
 import sys
-from collections import deque
+
 
 input = sys.stdin.readline
 
 N = int(input().rstrip())
 
-dq = deque()
+queue = []
 
 for _ in range(N):
     command = input().rstrip()
     if "push" in command:
-        dq.append(command.split()[1])
+        queue.append(command.split()[1])
     elif "pop" == command:
-        if dq:
-            pop_num = dq.popleft()
+        if queue:
+            pop_num = queue.pop(0)
             print(pop_num)
         else:
             print(-1)
     elif "size" == command:
-        print(len(dq))
+        print(len(queue))
     elif "empty" == command:
-        if dq:
+        if queue:
             print(0)
         else:
             print(1)
     elif "front" == command:
-        if dq:
-            print(dq[0])
+        if queue:
+            print(queue[0])
         else:
             print(-1)
     elif "back" == command:
-        if dq:
-            print(dq[-1])
+        if queue:
+            print(queue[-1])
         else:
             print(-1)
