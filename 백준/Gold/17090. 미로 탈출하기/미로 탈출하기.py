@@ -1,12 +1,9 @@
 # Gold 3. 미로 탈출하기
 
 from collections import deque
+import sys
 
-U = (-1, 0)
-R = (0, 1)
-D = (1, 0)
-L = (0, -1)
-
+input = sys.stdin.readline
 # U, D, R, L
 dx = [-1, 1, 0, 0]
 dy = [0, 0, 1, -1]
