@@ -2,13 +2,10 @@
 from itertools import combinations_with_replacement
 import sys
 input = sys.stdin.readline
+print = sys.stdout.write
 
 N, M = map(int, input().split())
-numbers = [i for i in range(1, N + 1)]
-
-
+numbers = range(1, N + 1)
 
 for cwr in combinations_with_replacement(numbers, M):
-    for num in cwr:
-        print(num, end=" ")
-    print()
+    print(' '.join(map(str, cwr)) + '\n')
