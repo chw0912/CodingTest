@@ -1,20 +1,14 @@
 # Silver 3. N과 M (4)
+from itertools import combinations_with_replacement
 import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-combi = []
+numbers = [i for i in range(1, N + 1)]
 
 
-def dfs(start):
-    if len(combi) == M:
-        print(' '.join(map(str, combi)))
-        return
-    
-    for i in range(start, N+1):
-        combi.append(i)
-        dfs(i)
-        combi.pop()
 
-
-dfs(1)
+for cwr in combinations_with_replacement(numbers, M):
+    for num in cwr:
+        print(num, end=" ")
+    print()
