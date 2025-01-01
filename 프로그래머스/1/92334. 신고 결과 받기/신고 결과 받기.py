@@ -1,7 +1,7 @@
 def solution(id_list, report, k):
-    declaration_count = dict()
-    declaration_id = dict()
-    result = dict()
+    declaration_count = dict()  # 각 유저별 신고된 횟수
+    declaration_id = dict()     # 각 유저별 신고한 id
+    result = dict()             # 각 유저별 결과 메일 받은 횟수 
     
     for user in id_list:
         declaration_count[user] = 0
