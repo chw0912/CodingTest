@@ -1,9 +1,12 @@
 # Silver 2. 추월
+import sys
 
-N = int(input())
+input = sys.stdin.readline
 
-Entry = {input().rstrip() : i for i in range(N)}
-Exit = list(int(Entry[input().rstrip()]) for _ in range(N))
+N = int(input().rstrip("\n"))
+
+Entry = {input().rstrip("\n") : i for i in range(N)}
+Exit = list(int(Entry[input().rstrip("\n")]) for _ in range(N))
 
 cnt = 0
 for i in range(N):
