@@ -10,12 +10,9 @@ class Solution {
             set.add(num);
         }
         if (set.size() > nums.length/2) {
-            answer = nums.length/2;
-        } else {
-            answer = set.size();
-        }
+            return nums.length/2;
+        } 
         
-        
-        return answer;
+        return set.size();
     }
 }
