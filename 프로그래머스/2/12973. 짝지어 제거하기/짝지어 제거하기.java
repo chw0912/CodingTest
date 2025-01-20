@@ -4,14 +4,11 @@ class Solution
 {
     public int solution(String s)
     {
-        char[] charArray = s.toCharArray();
         Stack<Character> stack = new Stack<>();
         
-        for (int i =0;i<charArray.length;i++) {
-            char c = charArray[i];
-            
+        for (char c : s.toCharArray()) {
             if (stack.isEmpty())  {
-                stack.push(charArray[i]);
+                stack.push(c);
             } else {
                 if (stack.peek() == c) {
                     stack.pop();
@@ -20,9 +17,8 @@ class Solution
                 }    
             }
         }
-        int answer = stack.isEmpty() ? 1 : 0;
         
-        return answer;
+        return stack.size() == 0 ? 1 : 0;
     }
     
     
