@@ -14,10 +14,10 @@ class Solution {
             
             String frontPlayer = players[playerRank - 1];
             
-            ranking.replace(frontPlayer,playerRank);
+            ranking.replace(frontPlayer, playerRank);
             players[playerRank] = frontPlayer;
             
-            ranking.replace(player,playerRank-1);
+            ranking.replace(player, playerRank-1);
             players[playerRank-1] = player;
         }
         
