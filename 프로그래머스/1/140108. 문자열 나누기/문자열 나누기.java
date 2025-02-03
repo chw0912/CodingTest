@@ -11,22 +11,22 @@ class Solution {
         
         for (int i=0;i<str.length;i++) {
             if (first == str[i]) {
-                same += 1;
+                same ++;
             } else if(first != str[i]) {
-                diff += 1;
+                diff ++;
             }
             
             if (same == diff) {
                 same = 0;
                 diff = 0;
-                answer += 1;
+                answer ++;
                 if (i+1 < str.length) {
                     first = str[i+1];
                 }
             }
             
             if (same != diff && i == str.length-1) {
-                answer += 1;
+                answer ++;
             }
         }
         
