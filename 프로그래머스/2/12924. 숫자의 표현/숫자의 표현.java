@@ -2,9 +2,9 @@ class Solution {
     public int solution(int n) {
         int answer = 0;
         
-        for (int i = 1; i< n+1;i++) {
-            int x = i;
-            for (int j = i + 1;j < n + 1;j++) {
+        for (int i = 1; i <= n;i++) {
+            int x = 0;
+            for (int j = i;j <= n;j++) {
                 x += j;
                 if (x == n) {
                     answer++;
@@ -14,7 +14,6 @@ class Solution {
                 }
             }
         }
-        answer++;
         
         return answer;
     }
