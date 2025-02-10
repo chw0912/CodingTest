@@ -22,10 +22,9 @@ class Solution {
             }
             
             
-            if (group1 < Math.max(group1, cnt)) {
-                int tmp = group1;
+            if (group1 < Math.max(group1, cnt)) {               
+                group2 = group1;
                 group1 = cnt;
-                group2 = tmp;
                 
             } else if (group2 < Math.max(group2, cnt)) {
                 group2 = cnt;
