@@ -23,25 +23,13 @@ public class Main {
             int tall = arr[i];
             int count;
 
-            if ( result[idx] == 0 ) {
-                while ( true ) {
-                    count = getCount(result, idx, i);
-                    if ( count >= tall && result[idx] == 0) {
-                        result[idx] = i + 1;
-                        break;
-                    } else {
-                        idx++;
-                    }
-                }
-            } else {
-                while ( true ) {
-                    count = getCount(result, idx, i);
-                    if ( count >= tall && result[idx] == 0 ) {
-                        result[idx] = i + 1;
-                        break;
-                    } else {
-                        idx++;
-                    }
+            while ( true ) {
+                count = getCount(result, idx, i);
+                if ( count >= tall && result[idx] == 0) {
+                    result[idx] = i + 1;
+                    break;
+                } else {
+                    idx++;
                 }
             }
         }
