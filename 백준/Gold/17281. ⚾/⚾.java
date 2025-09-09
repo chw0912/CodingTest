@@ -1,146 +1,98 @@
+// 17281. [G4] ⚾.
 import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    static BufferedReader br;
-    static BufferedWriter bw;
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringTokenizer st;
+    static final int AT1 = 1, AT2 = 2, AT3 = 3, HR = 4, OUT = 0;
     static int N;
-    static int[][] players;
-    static boolean[] select;
-    static int[] lineup;
-    static int answer;
-
+    static int ans = 0;
+    static int[][] player;
+    static int[] lineUp = new int[10];
 
     public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new InputStreamReader(System.in));
-        bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        N = Integer.parseInt(br.readLine());
-        players = new int[N + 1][10]; // [1-based][1-based]
-
-        for (int i = 1; i <= N; i++) {
-            st = new StringTokenizer(br.readLine());
-            for (int j = 1; j <= 9; j++) {
-                players[i][j] = Integer.parseInt(st.nextToken());
-            }
-        }
-
-        select = new boolean[10];
-        lineup = new int[10];
-
-        select[4] = true;
-        lineup[4] = 1;
-
-        permutation(2);
-        bw.write(String.valueOf(answer));
-        bw.flush();
-
+        input();
+        solve();
+        output();
     }
 
-    private static void permutation(int num) {
-        if (num == 10) {
-            playGame();
+    static void input() throws IOException {
+        N = Integer.parseInt(br.readLine());
+        player = new int[N + 1][10];
+        lineUp[4] = 1;
+        // 선수별 성적 입력
+        for (int n = 1; n <= N; n++) {
+            st = new StringTokenizer(br.readLine());
+            for (int p = 1; p <= 9; p++) {
+                player[n][p] = Integer.parseInt(st.nextToken());
+            }
+        }
+    }
+
+    static void solve() {
+        dfs(2);
+    }
+
+    static void output() throws IOException {
+        bw.write(String.valueOf(ans));
+        bw.flush();
+    }
+
+    static void dfs(int p) {
+        // 마지막 선수까지 배치하면 종료
+        if (p == 10) {
+            simulation();
             return;
         }
+        ;
 
-        for (int i = 1; i <= 9; i++) {
-            if (select[i]) {
-                continue;
-            }
-            select[i] = true;
-            lineup[i] = num;
-            permutation(num + 1);
-            select[i] = false;
+        for (int e = 1; e <= 9; e++) {
+            // 4번 타자는 항상 1번이므로 스킵
+            if (e == 4) continue;
+            // 타자가 배정되어 있으면 스킵
+            if (lineUp[e] != 0) continue;
+            lineUp[e] = p; // 타자 배정
+            dfs(p + 1);
+            lineUp[e] = 0; // 타자 미배정
         }
     }
 
-    public static void playGame() {
+    static void simulation() {
         int score = 0;
-        int playerIdx = 0;
-
-        for (int i = 1; i <= N; i++) {
-            boolean[] base = new boolean[4];
-            int outCount = 0;
-
-            while (outCount < 3) {
-                int j = (playerIdx % 9) + 1;
-                // 타자
-                int batter = players[i][lineup[j]];
-                base[0] = true;
-                switch (batter) {
-                    // 아웃
-                    case 0:
+        int k = 0; // 0 - based -> 1 - based (1번타자 -> 9번타자)
+        for (int e = 1; e <= N; e++) {
+            int outCount = 0; // 이닝별 아웃 카운트 초기화
+            int base = 0; // 1, 2, 3 루 (0 - based) 이닝별 베이스 초기화
+            while (outCount < 3) { // 한 이닝에 아웃 카운트 체크
+                base = base | 1;
+                int play = player[e][lineUp[(k % 9) + 1]]; // 0~8 이므로 +1 통해서 1~9
+                switch (play) {
+                    case AT1:
+                        base = (base << 1);
+                        break;
+                    case AT2:
+                        base = (base << 2);
+                        break;
+                    case AT3:
+                        base = (base << 3);
+                        break;
+                    case HR:
+                        base = base << 4;
+                        break;
+                    case OUT:
+                        base &= 0b1110;
                         outCount++;
                         break;
-                    // 1루타
-                    case 1:
-                        // 현재 진루한 선수들을 확인하기 위한 for문
-                        // ex) base[2] = true면 2루에 진루한 선수
-                        // ex) base[0] = true면 타자
-                        for (int k = 3; k >= 0; k--) {
-                            // 진루한 선수가 있으면
-                            // base[1] = true는 1루에 진루한 선수
-                            if (base[k]) {
-                                if (k == 3) {
-                                    score++;
-                                    base[k] = false;
-                                    continue;
-                                }
-                                // 해당 루를 1칸씩 전진하기 위한 로직
-                                base[k] = false;
-                                base[k + 1] = true;
-                            }
-                        }
-                        break;
-                    // 2루타
-                    case 2:
-                        for (int k = 3; k >= 0; k--) {
-                            if (base[k]) {
-                                if (k == 3 || k == 2) {
-                                    score++;
-                                    base[k] = false;
-                                    continue;
-                                }
-                                base[k] = false;
-                                base[k + 2] = true;
-                            }
-                        }
-                        break;
-                    // 3루타
-                    case 3:
-                        for (int k = 3; k >= 0; k--) {
-                            if (base[k]) {
-                                if (k == 3 || k == 2 || k == 1) {
-                                    score++;
-                                    base[k] = false;
-                                    continue;
-                                }
-                                base[k] = false;
-                                base[k + 3] = true;
-                            }
-                        }
-                        break;
-                    // 홈런
-                    case 4:
-                        for (int k = 0; k < 4; k++) {
-                            if (base[k]) {
-                                score++;
-                                base[k] = false;
-                            }
-                        }
-                        break;
-
-
                 }
-                playerIdx++;
+                int referee = base & 0b11110000; // 점수 집계 준비
+                score += Integer.bitCount(referee);
+                base = base & 0b00001111; // (점수 득점하고)진출한 선수들 정리
+                k++;
             }
         }
-
-        answer = Math.max(answer, score);
-
+        ans = Math.max(ans, score);
     }
-
 
 }
