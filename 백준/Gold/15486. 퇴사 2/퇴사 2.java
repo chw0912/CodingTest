@@ -9,7 +9,8 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N; // 상담일수
-    static int[][] arr; // 상담일 별 이익
+    static int[] T; // 상담일 별 이익
+    static int[] P;
     static int[] dp;
 
     public static void main(String[] args) throws IOException {
@@ -20,20 +21,21 @@ public class Main {
 
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
-        arr = new int[N+1][2];
+        T = new int[N+1];
+        P = new int[N+1];
         dp = new int[N+1];
 
         for ( int i = 1; i <= N; i++ ) {
             st = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
+            T[i] = Integer.parseInt(st.nextToken());
+            P[i] = Integer.parseInt(st.nextToken());
         }
     }
 
     static void solve() {
         for ( int i = 1; i <= N; i++ ) {
-            int Ti = arr[i][0] - 1;
-            int Pi = arr[i][1];
+            int Ti = T[i] - 1;
+            int Pi = P[i];
 
             dp[i] = Math.max(dp[i], dp[i-1]);
 
