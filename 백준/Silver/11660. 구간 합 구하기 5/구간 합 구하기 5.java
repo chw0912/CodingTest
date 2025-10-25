@@ -35,36 +35,23 @@ public class Main {
         for ( int i = 1; i <= N; i++ ) {
             st = new StringTokenizer(br.readLine());
             for ( int j = 1; j <= N; j++ ) {
-                table[i][j] = Integer.parseInt(st.nextToken());
+                dp[i][j] = Integer.parseInt(st.nextToken()) + dp[i][j-1] + dp[i-1][j] - dp[i-1][j-1];
             }
         }
 
         // ranges
         for ( int i = 1; i <= M; i++ ) {
             st = new StringTokenizer(br.readLine());
-            for ( int j = 0; j < 4; j++ ) {
-                ranges[i][j] = Integer.parseInt(st.nextToken());
-            }
-        }
-
-        for ( int i = 1; i <= N; i++ ) {
-            for ( int j = 1; j <= N; j++ ) {
-                dp[i][j] = table[i][j]+ dp[i][j-1] + dp[i-1][j] - dp[i-1][j-1];
-            }
-        }
-
-    }
-
-    static void solve() {
-
-        for ( int i = 1; i <= M; i++ ) {
-            x1 = ranges[i][0];
-            y1 = ranges[i][1];
-            x2 = ranges[i][2];
-            y2 = ranges[i][3];
+            x1 = Integer.parseInt(st.nextToken());
+            y1 = Integer.parseInt(st.nextToken());
+            x2 = Integer.parseInt(st.nextToken());
+            y2 = Integer.parseInt(st.nextToken());
 
             result[i] = dp[x2][y2] - dp[x1-1][y2] - dp[x2][y1-1] + dp[x1-1][y1-1];
         }
+    }
+
+    static void solve() {
 
     }
 
