@@ -9,6 +9,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
+    static StringBuilder sb = new StringBuilder();
 
     static int T; // 테스트 케이스 수
     static int N; // 스티커 개수
@@ -61,9 +62,8 @@ public class Main {
 
     static void output() throws IOException {
         for ( int t = 0; t < T; t++ ) {
-            bw.write(result[t] + "\n");
+            sb.append(result[t]).append("\n");
         }
-        bw.flush();
-        bw.close();
+        out.println(sb);
     }
 }
