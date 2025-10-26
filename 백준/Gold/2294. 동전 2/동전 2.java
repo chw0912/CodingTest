@@ -29,7 +29,7 @@ public class Main {
             coins[i] = Integer.parseInt(br.readLine());
         }
         for ( int i = 1; i <= K; i++ ) {
-            dp[i] = Integer.MAX_VALUE-1;
+            dp[i] = Integer.MAX_VALUE - 1;
         }
 
 
