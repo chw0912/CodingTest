@@ -45,8 +45,8 @@ public class Main {
                     dp[0][i] = score[0][i] + dp[1][i-1];
                     dp[1][i] = score[1][i] + dp[0][i-1];
                 } else {
-                    dp[0][i] = score[0][i] + Math.max(dp[1][i-1], Math.max(dp[1][i-2], dp[0][i-2]));
-                    dp[1][i] = score[1][i] + Math.max(dp[0][i-1], Math.max(dp[0][i-2], dp[1][i-2]));
+                    dp[0][i] = score[0][i] + Math.max(dp[1][i-1], dp[1][i-2]);
+                    dp[1][i] = score[1][i] + Math.max(dp[0][i-1], dp[0][i-2]);
                 }
             }
 
