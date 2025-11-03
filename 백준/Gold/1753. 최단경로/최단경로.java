@@ -1,11 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
-
-
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -16,8 +15,18 @@ public class Main {
     static ArrayList<ArrayList<Node>> graph = new ArrayList<>();
     static boolean[] visited; // 방문기록 1-based
     static int[] distance; // 거리 1-based
+    static PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(o1.weight, o2.weight));
 
-    
+    static class Node {
+        int index; //
+        int weight;
+
+        Node(int index, int weight) {
+            this.index = index;
+            this.weight = weight;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         input();
         solve();
@@ -43,7 +52,6 @@ public class Main {
             graph.get(u).add(new Node(v, w));
         }
 
-        visited = new boolean[V+1];
         distance = new int[V+1];
 
         for ( int i = 1; i <= V; i++ ) {
@@ -53,27 +61,25 @@ public class Main {
     }
 
     static void solve() {
+        pq.offer(new Node(K, 0));
         distance[K] = 0;
 
-        for ( int i = 0; i < V; i++ ) {
-            int nodeValue = Integer.MAX_VALUE;
-            int nodeIdx = 0;
+        while ( !pq.isEmpty() ) {
+            Node curNode = pq.poll();
 
-            for ( int j = 1; j <= V; j++ ) {
-                if ( !visited[j] && distance[j] < nodeValue ) {
-                    nodeValue = distance[j];
-                    nodeIdx = j;
+            if ( distance[curNode.index] < curNode.weight ) {
+                continue;
+            }
+
+            for ( int i = 0; i < graph.get(curNode.index).size(); i++ ) {
+                Node adjNode = graph.get(curNode.index).get(i);
+
+                if ( distance[adjNode.index] > curNode.weight + adjNode.weight ) {
+                    distance[adjNode.index] = curNode.weight + adjNode.weight;
+                    pq.offer(new Node(adjNode.index, distance[adjNode.index]));
                 }
             }
-            visited[nodeIdx] = true;
 
-            for ( int j = 0; j < graph.get(nodeIdx).size(); j++ ) {
-                Node adjNode = graph.get(nodeIdx).get(j);
-
-                if ( distance[adjNode.index] > distance[nodeIdx] + adjNode.weight ) {
-                    distance[adjNode.index] = distance[nodeIdx] + adjNode.weight;
-                }
-            }
         }
     }
 
@@ -82,7 +88,7 @@ public class Main {
             if ( distance[i] == Integer.MAX_VALUE ) {
                 bw.write("INF\n");
             } else {
-                bw.write(String.valueOf(distance[i]) + "\n");
+                bw.write(distance[i] + "\n");
             }
         }
         bw.flush();
@@ -90,12 +96,4 @@ public class Main {
     }
 }
 
-class Node {
-    int index; //
-    int weight;
 
-    Node(int index, int weight) {
-        this.index = index;
-        this.weight = weight;
-    }
-}
