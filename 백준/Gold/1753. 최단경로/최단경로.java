@@ -17,16 +17,7 @@ public class Main {
     static boolean[] visited; // 방문기록 1-based
     static int[] distance; // 거리 1-based
 
-    static class Node {
-        int index; //
-        int weight;
-
-        Node(int index, int weight) {
-            this.index = index;
-            this.weight = weight;
-        }
-    }
-
+    
     public static void main(String[] args) throws IOException {
         input();
         solve();
@@ -96,5 +87,15 @@ public class Main {
         }
         bw.flush();
         bw.close();
+    }
+}
+
+class Node {
+    int index; //
+    int weight;
+
+    Node(int index, int weight) {
+        this.index = index;
+        this.weight = weight;
     }
 }
