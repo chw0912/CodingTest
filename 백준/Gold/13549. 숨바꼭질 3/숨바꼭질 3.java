@@ -26,9 +26,9 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        result = new int[MAX_VALUE];
+        result = new int[K*2 +1];
 
-        for (int i = 0; i < MAX_VALUE; i++) {
+        for (int i = 0; i <= K*2; i++) {
             result[i] = INF;
         }
 
@@ -36,6 +36,9 @@ public class Main {
 
     static void solve() {
 
+        // 만약 수빈이의 위치가 동생 위치보다 앞에 있다면
+        // 수빈이의 위치 - 동생 위치
+        // 이 값이 최소가 된다.
         if ( N > K ) {
             result[K] = N - K;
             return;
@@ -53,6 +56,8 @@ public class Main {
             }
 
             // 만약 현재 x 위치가 K가 아니라면 x-1, x+1 추가
+            // x-1, x+1의 값이 정해진 범위 내일 경우
+            // 가장 빠른 값이 있을 때 queue에 위치 추가
             if ( x - 1 >= 1) {
                 if ( result[x-1] > result[x] + 1 ) {
                     queue.add(x-1);
