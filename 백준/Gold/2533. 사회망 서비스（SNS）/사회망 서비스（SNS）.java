@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import static java.lang.System.in;
@@ -11,7 +12,7 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N; // 정점의 개수
-    static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+    static List<Integer>[] graph;
     static int[][] dp;
     static boolean[] visited;
 
@@ -25,9 +26,10 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         dp = new int[N+1][2];
         visited = new boolean[N+1];
+        graph = new ArrayList[N+1];
 
         for ( int i = 0; i <= N; i++) {
-            graph.add(new ArrayList<>());
+            graph[i] = new ArrayList<>();
         }
 
         for (int i = 1; i < N; i++) {
@@ -35,8 +37,8 @@ public class Main {
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
 
-            graph.get(u).add(v);
-            graph.get(v).add(u);
+            graph[u].add(v);
+            graph[v].add(u);
         }
     }
 
@@ -55,7 +57,7 @@ public class Main {
         dp[parent][0] = 0;
         dp[parent][1] = 1;
 
-        for ( int child : graph.get(parent)) {
+        for ( int child : graph[parent]) {
             if (!visited[child]) {
                 dfs(child);
                 dp[parent][0] += dp[child][1];
