@@ -1,21 +1,30 @@
-from collections import deque
+# 암호 생성기
 T = 10
 
-for t in range(1,T+1):
-    tc = int(input())
-    queue2 = deque(list(map(int, input().split())), maxlen=8)
+for t in range(1, T+1):
+    N = int(input())
 
-    i = 1
+    numbers = list(map(int, input().split()))
+
+    idx = 0
+
+    minus = 1
+
     while True:
-        if i > 5:
-            i = 1
-        q = queue2.popleft() - i
-        if q <= 0:
-            queue2.append(0)
+        numbers[idx] -= minus
+
+        if numbers[idx] <= 0:
+            numbers[idx] = 0
             break
-        queue2.append(q)
-        i += 1
-    print(f'#{tc}', end=' ')
-    for q in queue2:
-        print(f'{q}', end=' ')
-    print()
+
+        idx = (idx + 1) % 8
+        minus = (minus % 5) + 1
+
+    if idx != 7:
+        result = numbers[idx+1:] + numbers[:idx+1]
+        print(f"#{t}", end = ' ')
+        for i in range(8):
+            print(f"{result[i]}", end= ' ')
+        print()
+    else:
+        print(f"#{t} {numbers}")
