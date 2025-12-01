@@ -46,16 +46,10 @@ public class Main {
         S = Integer.parseInt(st.nextToken());
         X = Integer.parseInt(st.nextToken());
         Y = Integer.parseInt(st.nextToken());
-
-
     }
 
     static void solve() {
-        for (int k = 1; k <= K; k++) {
-            for (Node node : virusDir.get(k) ) {
-                queue.offer(node);
-            }
-        }
+        
         bfs();
     }
 
@@ -66,7 +60,12 @@ public class Main {
     }
 
     static void bfs() {
-
+        for (int k = 1; k <= K; k++) {
+            for (Node node : virusDir.get(k) ) {
+                queue.offer(node);
+            }
+        }
+        
         while (!queue.isEmpty()) {
             Node curNode = queue.poll();
             int x = curNode.x;
@@ -84,9 +83,6 @@ public class Main {
                 }
             }
         }
-
-
-
     }
 
     static class Node {
