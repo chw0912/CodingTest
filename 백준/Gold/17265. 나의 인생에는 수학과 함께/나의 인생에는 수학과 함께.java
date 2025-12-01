@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import static java.lang.System.in;
@@ -12,14 +10,8 @@ public class Main {
     static StringTokenizer st;
     static int N;
     static String[][] map;
-    static boolean[][] visited;
     static int max = -Integer.MAX_VALUE;
     static int min = Integer.MAX_VALUE;
-    static int[] dx = {1, 0};
-    static int[] dy = {0, 1};
-    static ArrayList<String> operations = new ArrayList<>(Arrays.asList("+", "-", "*"));
-    static int[][] dp;
-    static int idx = -1; // operations 인덱스
 
     public static void main(String[] args) throws IOException {
         input();
@@ -30,8 +22,6 @@ public class Main {
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
         map = new String[N][N];
-        visited = new boolean[N][N];
-        dp = new int[N][N];
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
