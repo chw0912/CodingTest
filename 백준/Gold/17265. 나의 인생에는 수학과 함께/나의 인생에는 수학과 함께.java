@@ -43,7 +43,7 @@ public class Main {
 
     static void dfs(int x, int y, int pre, char oper) {
 
-        if (!isOperation(map[x][y])) {
+        if (Character.isDigit(map[x][y])) {
             int cur = map[x][y] - '0';
             if (oper == '+') {
                 pre += cur;
@@ -72,13 +72,5 @@ public class Main {
 
     }
 
-    static boolean isOperation(char value) {
-        try {
-            Integer.parseInt(String.valueOf(value));
-            return false;
-        } catch ( NumberFormatException e ) {
-            return true;
-        }
-    }
 
 }
