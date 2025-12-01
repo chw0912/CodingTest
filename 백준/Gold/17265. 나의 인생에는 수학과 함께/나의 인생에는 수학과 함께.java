@@ -9,7 +9,7 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N;
-    static String[][] map;
+    static char[][] map;
     static int max = -Integer.MAX_VALUE;
     static int min = Integer.MAX_VALUE;
 
@@ -21,18 +21,18 @@ public class Main {
 
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
-        map = new String[N][N];
+        map = new char[N][N];
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-                map[i][j] = st.nextToken();
+                map[i][j] = st.nextToken().charAt(0);
             }
         }
     }
 
     static void solve() {
-        dfs(0,0, 0, "+");
+        dfs(0,0, 0, '+');
     }
 
     static void output() throws IOException {
@@ -41,14 +41,13 @@ public class Main {
         bw.close();
     }
 
-    static void dfs(int x, int y, int pre, String oper) {
-        int cur;
+    static void dfs(int x, int y, int pre, char oper) {
 
         if (!isOperation(map[x][y])) {
-            cur = Integer.parseInt(map[x][y]);
-            if (oper.equals("+")) {
+            int cur = map[x][y] - '0';
+            if (oper == '+') {
                 pre += cur;
-            } else if (oper.equals("-")) {
+            } else if (oper == '-') {
                 pre -= cur;
             } else {
                 pre *= cur;
@@ -73,9 +72,9 @@ public class Main {
 
     }
 
-    static boolean isOperation(String value) {
+    static boolean isOperation(char value) {
         try {
-            Integer.parseInt(value);
+            Integer.parseInt(String.valueOf(value));
             return false;
         } catch ( NumberFormatException e ) {
             return true;
