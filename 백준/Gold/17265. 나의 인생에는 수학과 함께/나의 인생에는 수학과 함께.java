@@ -42,32 +42,32 @@ public class Main {
     }
 
     static void dfs(int x, int y, int pre, String oper) {
+        int cur;
+
+        if (!isOperation(map[x][y])) {
+            cur = Integer.parseInt(map[x][y]);
+            if (oper.equals("+")) {
+                pre += cur;
+            } else if (oper.equals("-")) {
+                pre -= cur;
+            } else {
+                pre *= cur;
+            }
+        } else {
+            oper = map[x][y];
+        }
+
         if (x == N - 1 && y == N - 1) {
-            max = Math.max(max, operating(oper, pre, Integer.parseInt(map[x][y])));
-            min = Math.min(min, operating(oper, pre, Integer.parseInt(map[x][y])));
+            max = Math.max(max, pre);
+            min = Math.min(min, pre);
             return;
         }
 
-        int temp;
-
-        if (isOperation(map[x][y])) {
-            if(map[x][y].equals("+")) {
-                oper = "+";
-            } else if(map[x][y].equals("-")) {
-                oper = "-";
-            } else {
-                oper = "*";
-            }
-            temp = pre;
-        } else {
-            temp = operating(oper, pre, Integer.parseInt(map[x][y]));
-        }
-
         if ( x < N - 1 ) {
-            dfs(x+1, y, temp, oper);
+            dfs(x+1, y, pre, oper);
         }
         if ( y < N - 1 ) {
-            dfs(x, y+1, temp, oper);
+            dfs(x, y+1, pre, oper);
         }
 
 
@@ -79,17 +79,6 @@ public class Main {
             return false;
         } catch ( NumberFormatException e ) {
             return true;
-        }
-    }
-
-    static int operating(String operation, int ans, int num) {
-        if (operation.equals("+")) {
-            return ans + num;
-        } else if (operation.equals("-")) {
-            return ans - num;
-        } else {
-            // "*"
-            return ans * num;
         }
     }
 
