@@ -45,9 +45,10 @@ public class Main {
         bw.flush();
     }
 
-    static void dfs(int a, int b, int c, int prev, int pPrev, String s) {
+    static void dfs(int a, int b, int c, int prev, int pPrev, String s) throws IOException {
         if (a == alphabet[0] && b == alphabet[1] && c == alphabet[2]) {
-            out.println(s);
+            bw.write(s);
+            bw.flush();
             System.exit(0);
             return;
         }
