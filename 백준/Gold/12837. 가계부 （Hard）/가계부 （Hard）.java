@@ -9,9 +9,9 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N, Q;
-    static int[] accountBook; // 1-based
     static int command, p, x, q;
     static StringBuilder sb = new StringBuilder();
+    static final int INPUT = 1, OUTPUT = 2;
 
     static class SegmentTree {
         long[] tree;
@@ -66,18 +66,19 @@ public class Main {
             command = Integer.parseInt(st.nextToken());
             p = Integer.parseInt(st.nextToken());
 
-            if (command == 1) {
-                x = Integer.parseInt(st.nextToken());
-                tree.update(1, N,1, p, x);
+            switch (command) {
+                case INPUT:
+                    x = Integer.parseInt(st.nextToken());
+                    tree.update(1, N,1, p, x);
+                    break;
+                
+                case OUTPUT:
+                    q = Integer.parseInt(st.nextToken());
+                    sb.append(tree.compute(p,q,1,1,N)).append("\n");
 
-
-            } else {
-                q = Integer.parseInt(st.nextToken());
-                // p일부터 q일까지 변화된 잔고를 출력하는 로직 필요
-                sb.append(tree.compute(p,q,1,1,N)).append("\n");
             }
-        }
 
+        }
     }
 
     static void solve() {
