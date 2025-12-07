@@ -29,7 +29,7 @@ public class Main {
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
         board = new int[N+1];
-        cnt = new int[N+1];
+        cnt = new int[4];
 
         st = new StringTokenizer(br.readLine());
         for ( int n = 1; n <= N; n++ ) {
