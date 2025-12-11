@@ -28,23 +28,25 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        visited = new int[N+M+1];
-        for ( int i = 0; i <= N+M+1; i++ ) {
+        int len = N+M+1;
+        visited = new int[len];
+        for ( int i = 0; i <= len; i++ ) {
             tubeStation.add(new ArrayList<>());
         }
 
         for ( int m = 1; m <= M; m++ ) {
             st = new StringTokenizer(br.readLine());
+            int tube = N+m;
             for ( int k = 0; k < K; k++ ) {
                 int station = Integer.parseInt(st.nextToken());
-                tubeStation.get(station).add(N+m);
-                tubeStation.get(N+m).add(station);
+                tubeStation.get(station).add(tube);
+                tubeStation.get(tube).add(station);
             }
         }
     }
 
     static void solve() {
-        bfs(1);
+        bfs();
     }
 
     static void output() throws IOException {
@@ -52,8 +54,8 @@ public class Main {
         bw.flush();
     }
 
-    static void bfs(int x) {
-        queue.offer(x);
+    static void bfs() {
+        queue.offer(1);
         visited[1] = 1;
 
         while( !queue.isEmpty() ) {
