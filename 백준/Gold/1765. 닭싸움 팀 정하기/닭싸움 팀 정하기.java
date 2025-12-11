@@ -51,21 +51,22 @@ public class Main {
 
     static void solve() {
         // 2. 원수의 원수는 친구
-        // 해당 학생의 원수들을 친구로 만들기
+        // 예를들어, 1번의 원수가 2명이상이면 그들끼리 친구이다.
+        // 해당 학생의 원수들을 친구로 만들기 
         for ( int n = 1; n <= N; n++ ) {
             ArrayList<Integer> e = enemy.get(n);
             for ( int i = 0; i < e.size(); i++ ) {
-                p = e.get(i);
+                p = e.get(i); //
                 for ( int j = 0; j < e.size(); j++ ) {
                     q = e.get(j);
                     if ( i == j ) continue;
-                    if ( friend.get(p).contains(e.get(j))) continue;
+                    if ( friend.get(p).contains(q)) continue;
                     friend.get(p).add(q);
-                    friend.get(q).add(p);
                 }
             }
         }
-        visited[0]= true;
+
+        //
         for ( int n = 1; n <= N; n++ ) {
             if ( !visited[n] ) {
                 dfs(n);
@@ -81,7 +82,8 @@ public class Main {
         bw.write(String.valueOf(ans));
         bw.flush();
     }
-
+    
+    // 팀 결성을 위한 dfs
     static void dfs(int x) {
         if (visited[x]) {
             return;
