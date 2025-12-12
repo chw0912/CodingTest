@@ -65,10 +65,6 @@ public class Main {
     }
 
     static long dfs(int cur) {
-        if ( graph.get(cur).isEmpty() ) {
-            // 음수이면 0을 리턴
-            return Math.max(amount[cur], 0);
-        }
         long result = amount[cur];
 
         for ( int next : graph.get(cur) ) {
