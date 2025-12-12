@@ -12,8 +12,8 @@ public class Main {
     static int N;
     static char type;
     static int a, p;
-    static boolean[] visited;
-    static ArrayList<Node> graph = new ArrayList<>();
+    static int[] amount;
+    static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
     static long ans;
 
     static class Node {
@@ -33,32 +33,30 @@ public class Main {
 
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
-        visited = new boolean[N+1];
+        amount = new int[N+1];
 
         for ( int n = 0; n <= N; n++ ) {
-            graph.add(new Node(0));
+            graph.add(new ArrayList<>());
         }
         for ( int n = 2; n <= N; n++ ) {
             st = new StringTokenizer(br.readLine());
             type = st.nextToken().charAt(0);
             a = Integer.parseInt(st.nextToken());
             p = Integer.parseInt(st.nextToken());
-            Node cur = graph.get(n);
+
             if ( type == 'S' ) {
-                cur.amount = a;
-                graph.get(p).next.add(n);
+                amount[n] = a;
+                graph.get(p).add(n);
             } else {
-                cur.amount = (-1)*a;
-                graph.get(p).next.add(n);
+                amount[n] = (-1) * a;
+                graph.get(p).add(n);
             }
 
         }
     }
 
     static void solve() {
-
-        ans = dfs(graph.get(1));
-
+        ans = dfs(1);
     }
 
     static void output() throws IOException {
@@ -66,16 +64,15 @@ public class Main {
         bw.flush();
     }
 
-    static long dfs(Node cur) {
-        if ( cur.next.isEmpty() ) {
+    static long dfs(int cur) {
+        if ( graph.get(cur).isEmpty() ) {
             // 음수이면 0을 리턴
-            return Math.max(cur.amount, 0);
+            return Math.max(amount[cur], 0);
         }
-        long result = cur.amount;
+        long result = amount[cur];
 
-        for ( int next : cur.next ) {
-            Node nextNode = graph.get(next);
-            result += dfs(nextNode);
+        for ( int next : graph.get(cur) ) {
+            result += dfs(next);
         }
 
         return Math.max(result, 0);
