@@ -14,7 +14,7 @@ public class Main {
     static int N, M; // 책의 개수, 책 빌리러온 학생 수
     static PriorityQueue<Node> pq;
     static boolean[] library;
-    static int ans;
+    static int ans; //정답
     static StringBuilder sb = new StringBuilder();
 
     static class Node {
