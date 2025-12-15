@@ -38,7 +38,6 @@ public class Main {
         P = Integer.parseInt(st.nextToken());
 
         road = new int[L+1][2];
-        Arrays.sort(gas, (o1, o2) -> o1[0] - o2[0]);
 
         for ( int n = 0; n < N; n++ ) {
             // 주유소에서 넣을 수 있는 주유량
