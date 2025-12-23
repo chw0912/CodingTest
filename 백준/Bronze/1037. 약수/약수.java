@@ -15,7 +15,7 @@ public class Main {
         int min = Integer.MAX_VALUE;
 
         StringTokenizer st = new StringTokenizer(br.readLine()," ");
-
+        // 테스트1
         while(T-- > 0) {
             int N = Integer.parseInt(st.nextToken());
             max = N > max ? N : max;
