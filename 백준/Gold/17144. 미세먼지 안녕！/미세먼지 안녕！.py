@@ -4,7 +4,7 @@ from collections import deque
 
 # 미세먼지 확산(동시에 일어나야 함)
 def spread(x, y, position):
-    # 동, 서, 남, 북
+    # 동, 서, 남, 북(4 방향)
     dx = [0, 0, 1, -1]
     dy = [1, -1, 0, 0]
 
