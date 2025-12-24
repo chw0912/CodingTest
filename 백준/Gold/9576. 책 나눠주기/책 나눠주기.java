@@ -10,7 +10,7 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
-    static int T;
+    static int T; // 테스트 케이스
     static int N, M; // 책의 개수, 책 빌리러온 학생 수
     static PriorityQueue<Node> pq;
     static boolean[] library;
