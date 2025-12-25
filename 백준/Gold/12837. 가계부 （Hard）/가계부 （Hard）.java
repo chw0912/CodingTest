@@ -10,7 +10,7 @@ public class Main {
     static StringTokenizer st;
     static int N, Q;
     static int command, p, x, q;
-    static StringBuilder sb = new StringBuilder();
+    static StringBuilder sb = new StringBuilder(); // 정답
     static final int INPUT = 1, OUTPUT = 2;
 
     static class SegmentTree {
