@@ -23,9 +23,7 @@ public class Main {
 
     static void solve() {
         for ( int i = 1; i <= N; i++ ) {
-            for ( int j = 1; j <= i; j++ ) {
-                sb.append("*");
-            }
+            sb.append("*".repeat(Math.max(0, i)));
             sb.append("\n");
         }
     }
