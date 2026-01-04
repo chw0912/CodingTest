@@ -67,7 +67,15 @@ public class Main {
     static void solve() {
         while(K-->0) {
             move();
-            magic();
+
+            for ( int i = 0; i < N; i++ ) {
+                for ( int j = 0; j < N; j++ ) {
+                    if ( map[i][j].size() >= 2 ) {
+                        magic(i, j);
+                    }
+                }
+            }
+
             clean();
         }
 
@@ -81,8 +89,9 @@ public class Main {
         bw.flush();
     }
 
+    // 파이어볼 초기화
     static void clean() {
-        balls = new ArrayList<>();
+        balls.clear();
         for (int i = 0; i < N; i++ ) {
             for ( int j = 0; j < N; j++ ) {
                 if (!map[i][j].isEmpty()) {
@@ -96,7 +105,7 @@ public class Main {
     static void move() {
         for ( int i = 0; i < N; i++ ) {
             for ( int j = 0; j < N; j++ ) {
-                map[i][j] = new ArrayList<>();
+                map[i][j].clear();
             }
         }
 
@@ -118,46 +127,45 @@ public class Main {
     // 속력 = 합쳐진 파이어볼 속력의 합 / 합쳐진 파이어볼 개수
     // 방향 = 4가지 방향 - 모두 홀수 또는 짝수면 0,2,4,6 / 그렇지 않으면 1,3,5,7
     // 질량이 0이면 소멸
-    static void magic() {
-        for ( int i = 0; i < N; i++ ) {
-            for ( int j = 0; j < N; j++ ) {
-                boolean isEven = true;
-                boolean isOdd = true;
-                int size = map[i][j].size();
-                if (size >= 2) {
-                    int m = 0;
-                    int s = 0;
-                    // 합치기
-                    for (FireBall ball : map[i][j]) {
-                        m += ball.m;
-                        s += ball.s;
-                        if ( ball.d % 2 == 0) {
-                            isOdd = false;
-                        } else {
-                            isEven = false;
-                        }
-                    }
+    static void magic(int x, int y) {
+        // 짝수
+        boolean isEven = true;
+        // 홀수
+        boolean isOdd = true;
+        int size = map[x][y].size();
 
-                    // 방향
-                    int[] dirs = {0, 2, 4, 6};
-                    if ( !isOdd && !isEven ) {
-                        for ( int k = 0; k < 4; k++ ) {
-                            dirs[k] += 1;
-                        }
-                    }
-
-                    // 4개의 파이어볼로 나누기
-                    int nm = m / 5;
-                    int ns = s / size;
-
-                    map[i][j] = new ArrayList<>();
-                    if (nm <= 0) continue;
-                    for (int d: dirs) {
-                        map[i][j].add(new FireBall(i,j,nm,ns,d));
-                    }
+        if (size >= 2) {
+            int m = 0;
+            int s = 0;
+            // 합치기
+            for (FireBall ball : map[x][y]) {
+                m += ball.m;
+                s += ball.s;
+                if ( ball.d % 2 == 0) {
+                    isOdd = false;
+                } else {
+                    isEven = false;
                 }
+            }
+
+            // 방향
+            int[] dirs = { 0, 2, 4, 6 };
+            // 모두 짝수 또는 홀수가 아닌 경우
+            if ( !isOdd && !isEven ) {
+                for ( int k = 0; k < 4; k++ ) {
+                    dirs[k]++;
+                }
+            }
+
+            // 4개의 파이어볼로 나누기
+            int nm = m / 5;
+            int ns = s / size;
+
+            map[x][y].clear();
+            if (nm <= 0) return;
+            for (int d: dirs) {
+                map[x][y].add(new FireBall(x,y,nm,ns,d));
             }
         }
     }
-
 }
