@@ -89,7 +89,7 @@ public class Main {
         bw.flush();
     }
 
-    // 파이어볼 초기화
+    // 파이어볼 정리
     static void clean() {
         balls.clear();
         for (int i = 0; i < N; i++ ) {
@@ -109,13 +109,13 @@ public class Main {
             }
         }
 
-        for ( FireBall cur : balls ) {
-            int nx = (cur.r + N + dx[cur.d] * (cur.s%N)) % N;
-            int ny = (cur.c + N + dy[cur.d] * (cur.s%N)) % N;
+        for ( FireBall ball : balls ) {
+            int nx = (ball.r + N + dx[ball.d] * (ball.s%N)) % N;
+            int ny = (ball.c + N + dy[ball.d] * (ball.s%N)) % N;
 
-            cur.r = nx;
-            cur.c = ny;
-            map[nx][ny].add(cur);
+            ball.r = nx;
+            ball.c = ny;
+            map[nx][ny].add(ball);
         }
     }
 
@@ -153,7 +153,7 @@ public class Main {
             // 모두 짝수 또는 홀수가 아닌 경우
             if ( !isOdd && !isEven ) {
                 for ( int k = 0; k < 4; k++ ) {
-                    dirs[k]++;
+                    dirs[k] = dirs[k] + 1;
                 }
             }
 
@@ -164,7 +164,7 @@ public class Main {
             map[x][y].clear();
             if (nm <= 0) return;
             for (int d: dirs) {
-                map[x][y].add(new FireBall(x,y,nm,ns,d));
+                map[x][y].add(new FireBall(x, y, nm, ns, d));
             }
         }
     }
