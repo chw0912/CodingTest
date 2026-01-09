@@ -9,6 +9,7 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         input();
@@ -18,6 +19,9 @@ public class Main {
 
     static void input() throws IOException {
         N = Integer.parseInt(br.readLine());
+        for ( int i = 1; i <= N; i++ ) {
+            sb.append(i).append("\n");
+        }
     }
 
     static void solve() {
@@ -25,9 +29,7 @@ public class Main {
     }
 
     static void output() throws IOException {
-        for ( int i = 1; i <= N; i++ ) {
-            bw.write(i + "\n");
-        }
+        bw.write(sb.toString());
         bw.flush();
     }
 }
