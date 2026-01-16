@@ -17,6 +17,7 @@ public class Main {
     }
 
     static void input() throws IOException {
+        sb.append("Hello World!");
     }
 
     static void solve() {
@@ -24,7 +25,7 @@ public class Main {
     }
 
     static void output() throws IOException {
-        bw.write("Hello World!");
+        bw.write(sb.toString());
         bw.flush();
     }
 }
