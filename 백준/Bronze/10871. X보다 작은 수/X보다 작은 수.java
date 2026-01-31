@@ -12,7 +12,6 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         input();
-        solve();
         output();
     }
 
@@ -28,13 +27,6 @@ public class Main {
                 sb.append(a).append(" ");
             }
         }
-
-
-
-    }
-
-    static void solve() {
-
     }
 
     static void output() throws IOException {
