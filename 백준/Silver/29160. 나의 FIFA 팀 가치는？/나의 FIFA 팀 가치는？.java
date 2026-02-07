@@ -1,7 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 import static java.lang.System.in;
@@ -11,18 +8,12 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
-    static final int LIMIT_PLAYER = 11;
+    static final int LIMIT_PLAYER = 11, LIMIT_VALUE = 100_000;
     static int N, K;
-    static ArrayList<PriorityQueue<Integer>> team = new ArrayList<>();
+    static int[][] team = new int[12][100_001];
+    static int[] player = new int[12];
     static int ans;
 
-    static class Player {
-        int value;
-
-        Player(int value) {
-            this.value = value;
-        }
-    }
     public static void main(String[] args) throws IOException {
         input();
         solve();
@@ -33,14 +24,15 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        for (int i = 0; i <= LIMIT_PLAYER; i++) {
-            team.add(new PriorityQueue<>(Comparator.reverseOrder()));
-        }
+
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            int teamNum = Integer.parseInt(st.nextToken());
-            int playerValue = Integer.parseInt(st.nextToken());
-            team.get(teamNum).add(playerValue);
+            int position = Integer.parseInt(st.nextToken());
+            int value = Integer.parseInt(st.nextToken());
+            team[position][value] += 1;
+            if (value > player[position]) {
+                player[position] = value;
+            }
         }
 
     }
@@ -48,19 +40,19 @@ public class Main {
     static void solve() {
         while (K-- > 0) {
             for (int i = 1; i <= LIMIT_PLAYER; i++) {
-                if (!team.get(i).isEmpty()) {
-                    int player = team.get(i).poll() - 1;
-                    team.get(i).offer(player);
+                if (player[i] != 0) {
+                    team[i][player[i]]--;
+                    team[i][player[i]-1]++;
+                    if (team[i][player[i]] == 0) {
+                        player[i]--;
+                    }
                 }
             }
         }
 
         for (int i = 1; i <= LIMIT_PLAYER; i++) {
-            if (!team.get(i).isEmpty()) {
-                ans += team.get(i).poll();
-            }
+            ans += player[i];
         }
-
     }
 
     static void output() throws IOException {
