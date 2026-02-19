@@ -10,7 +10,7 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
     static StringTokenizer st;
     static int N;
-    static boolean[] visited;
+    static boolean[] visited; // 방문배열
     static ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
     static int[] pTree;
 
