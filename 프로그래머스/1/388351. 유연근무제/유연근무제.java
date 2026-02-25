@@ -2,6 +2,7 @@ class Solution {
     public int solution(int[] schedules, int[][] timelogs, int startday) {
         int answer = 0;
         
+        // 스케줄
         for (int i = 0; i <schedules.length; i++)  {
             int eventTime = timePlusTen(schedules[i]);
             boolean status = true;
