@@ -2,6 +2,7 @@ class Solution {
     public int solution(int[] cards) {
         int answer = 0;
         
+        // 방문처리
         boolean[] visited = new boolean[cards.length];
         
         int group1 = 0;
