@@ -13,6 +13,7 @@ public class Main {
     static int left, right, sum;
     static int ans = Integer.MAX_VALUE;
 
+    //test
     public static void main(String[] args) throws IOException {
         input();
         solve();
