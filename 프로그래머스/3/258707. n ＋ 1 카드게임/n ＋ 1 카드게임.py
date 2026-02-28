@@ -5,6 +5,7 @@ def solution(coin, cards):
     n = len(cards)
     s = n//3
     
+    
     hand = deque(cards[:s])
     deck = deque(cards[s:])
     
@@ -28,6 +29,7 @@ def solution(coin, cards):
          
     return answer
 
+# 체크
 def check(deck1, deck2, target):
     
     operand = set(deck2)
