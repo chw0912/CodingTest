@@ -5,6 +5,7 @@ def solution(scores):
     scores.sort(key=lambda x:(-x[0],x[1]))
     tmp = 0
     
+    # 점수
     for score in scores:
         if wanho[0] < score[0] and  wanho[1] < score[1]:
             return -1
