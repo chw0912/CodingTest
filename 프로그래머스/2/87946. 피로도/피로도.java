@@ -10,6 +10,7 @@ class Solution {
         return answer;
     }
     
+    // 완전 탐색
     public void dfs(int depth, int k, int[][] dungeons) {
         for (int i = 0; i < dungeons.length; i++) {
             if (!visited[i] && dungeons[i][0] <= k) {
