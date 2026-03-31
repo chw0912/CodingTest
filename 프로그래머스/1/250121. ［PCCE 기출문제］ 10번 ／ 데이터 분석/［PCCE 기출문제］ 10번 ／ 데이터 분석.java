@@ -8,6 +8,7 @@ class Solution {
         return Arrays.stream(data).filter(x -> x[filterIndex] < val_ext).sorted((o1, o2) -> o1[indexTranslator(sort_by)] - o2[indexTranslator(sort_by)]).toArray(int[][]::new);
     }
     
+    // test
     private int indexTranslator(String ext) {
         switch (ext) {
             case "code" : return 0;
