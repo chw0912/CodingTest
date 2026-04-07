@@ -12,7 +12,9 @@ public class Main {
     static StringTokenizer st;
     static int M, N;
     static int[][] map;
-    static int[][] dp;
+    static int ans;
+    static int[] dpCol;
+//    static int[][] dp;
 
     public static void main(String[] args) throws IOException {
         input();
@@ -29,7 +31,7 @@ public class Main {
             if(M == 0 && N == 0) break;
 
             map = new int[M+1][N+1];
-            dp = new int[M+1][N+1];
+            dpCol = new int[M+1];
 
             for (int m = 1; m <= M; m++) {
                 st = new StringTokenizer(br.readLine());
@@ -46,25 +48,33 @@ public class Main {
 
     static void solve() {
 
-        // 가로
-        // dp[i][N]에 각 행 별 최대값 저장
+        int[] row = new int[M + 1];
+
         for(int i = 1; i <= M; i++) {
-            dp[i][1] = map[i][1];
+            int[] dpRow = new int[N + 1];
+
+            dpRow[1] = map[i][1];
+
             for(int j = 2; j <= N; j++) {
-                dp[i][j] = Math.max(dp[i][j-1], dp[i][j-2] + map[i][j]);
+                dpRow[j] = Math.max(dpRow[j-1], dpRow[j-2] + map[i][j]);
             }
+
+            row[i] = dpRow[N];
         }
 
-        // 세로
-        // dp N열의 최대값을 저장
+        dpCol = new int[M + 1];
+
+        dpCol[1] = row[1];
+
         for(int i = 2; i <= M; i++) {
-            dp[i][N] = Math.max(dp[i-1][N], dp[i-2][N] + dp[i][N]);
+            dpCol[i] = Math.max(dpCol[i-1], dpCol[i-2] + row[i]);
         }
+
     }
 
 
     static void output() throws IOException {
-        bw.write(dp[M][N] + "\n");
+        bw.write(dpCol[M] + "\n");
         bw.flush();
     }
 
