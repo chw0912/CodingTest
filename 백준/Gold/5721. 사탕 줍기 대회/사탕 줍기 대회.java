@@ -13,7 +13,6 @@ public class Main {
     static int M, N;
     static int[][] map;
     static int ans;
-    static int[] dpCol;
 //    static int[][] dp;
 
     public static void main(String[] args) throws IOException {
@@ -31,7 +30,6 @@ public class Main {
             if(M == 0 && N == 0) break;
 
             map = new int[M+1][N+1];
-            dpCol = new int[M+1];
 
             for (int m = 1; m <= M; m++) {
                 st = new StringTokenizer(br.readLine());
@@ -40,13 +38,13 @@ public class Main {
                 }
             }
 
-            solve();
+            ans = solve();
             output();
         }
 
     }
 
-    static void solve() {
+    static int solve() {
 
         int[] row = new int[M + 1];
 
@@ -62,19 +60,19 @@ public class Main {
             row[i] = dpRow[N];
         }
 
-        dpCol = new int[M + 1];
+        int[] dpCol = new int[M + 1];
 
         dpCol[1] = row[1];
 
         for(int i = 2; i <= M; i++) {
             dpCol[i] = Math.max(dpCol[i-1], dpCol[i-2] + row[i]);
         }
-
+        return dpCol[M];
     }
 
 
     static void output() throws IOException {
-        bw.write(dpCol[M] + "\n");
+        bw.write(ans + "\n");
         bw.flush();
     }
 
