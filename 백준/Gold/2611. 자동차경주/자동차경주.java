@@ -13,6 +13,7 @@ public class Main {
     static int[] dp;
     static int[] route; // [i] = j : j -> i
     static int[] inDegree; // 진입차수 [i] = k : i번째 노드는 k개의 경로로 올 수 있다.
+    static int ans;
 
 
     static class Edge {
@@ -38,7 +39,7 @@ public class Main {
         route = new int[N + 1];
         inDegree = new int[N + 1];
 
-        for (int m = 0; m <= M; m++) {
+        for (int n = 0; n <= N; n++) {
             adj.add(new ArrayList<>());
         }
 
@@ -55,8 +56,8 @@ public class Main {
     }
 
     static void solve() {
-//        dfs(new Edge(1, 0));
-        bfs();
+        dfs(new Edge(1, 0));
+//        bfs();
     }
 
     static void dfs(Edge curr) {
@@ -66,18 +67,19 @@ public class Main {
             // 초기에 DP의 값은 0이 들어가 있음
             // 그러면 이거를 최대값 방식으로 갱신다
             // dp를 최대값이 갱신될때 route랑 dp값을 변경
-            if (dp[curr.idx] + next.cost > dp[next.idx]) {
-                dp[next.idx] = dp[curr.idx] + next.cost;
+            if (curr.cost + next.cost > dp[next.idx]) {
+                dp[next.idx] = curr.cost + next.cost;
                 route[next.idx] = curr.idx;
             }
             // 진입차수 0이라는건
             // 현재 정점으로부터 올 수 있는 모든 경로를 탐색했을때,
             // = 최대값이 확정되었을때,
             if (--inDegree[next.idx] == 0) {
-                if (next.idx != 1) {
+                if(next.idx != 1) {
+                    next.cost = dp[next.idx];
                     dfs(next);
-
                 }
+
             }
 
         }
@@ -104,7 +106,6 @@ public class Main {
                 if (--inDegree[next.idx] == 0) {
                     if (next.idx != 1) {
                         queue.offer(next);
-
                     }
                 }
 
