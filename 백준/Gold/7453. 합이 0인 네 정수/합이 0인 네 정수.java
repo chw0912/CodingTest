@@ -34,7 +34,7 @@ public class Main {
             C[n] = Integer.parseInt(st.nextToken());
             D[n] = Integer.parseInt(st.nextToken());
         }
-
+        // 두 개의 배열로 가능한 조합 합치기
         AB = new int[N*N];
         CD = new int[N*N];
 
