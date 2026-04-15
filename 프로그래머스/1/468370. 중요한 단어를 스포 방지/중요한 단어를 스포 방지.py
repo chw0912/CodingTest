@@ -4,6 +4,7 @@ def solution(message, spoiler_ranges):
     spoiler_message = [False] * len(message)
     message_range = []
     
+    # 사작, 끝
     start = 0
     end = 0
     
