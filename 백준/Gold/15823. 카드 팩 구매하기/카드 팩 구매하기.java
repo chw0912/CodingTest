@@ -52,6 +52,7 @@ public class Main {
                 i++;
                 size--;
             }
+            if (visited[size] == 0) continue;
             visited[size]--;
         }
 
