@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
+import java.util.*;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
@@ -28,40 +25,53 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         cards = new int[N];
-        visited = new int[N+1];
         st = new StringTokenizer(br.readLine());
         for (int n = 0; n < N; n++) {
             cards[n] = Integer.parseInt(st.nextToken());
         }
-        Arrays.fill(visited, M);
+
     }
 
     static void solve() {
-        int i = 0, j = 0;
+        int left = 1, right = N / M; // left : 한팩의 카드 수량 최소값, right : 한팩의 카드 수량 최대값
 
-        Set<Integer> set = new HashSet<>();
-        int size = 0;
+        while (left <= right) {
+            int mid = (left + right) / 2;
 
-        while (i != N && j != N) {
-            if (!set.contains(cards[j])) {
-                set.add(cards[j]);
-                j++;
-                size++;
+            if (checkCardPack(mid)) {
+                ans = mid;
+                left = mid + 1;
             } else {
-                set.remove(cards[i]);
-                i++;
-                size--;
+                right = mid - 1;
             }
-            if (visited[size] == 0) continue;
-            visited[size]--;
+
+        }
+    }
+
+    static boolean checkCardPack(int targetSize) {
+        int packCnt = 0;
+        int left = 0;
+        Set<Integer> currentPack = new HashSet<>();
+
+        for (int right = 0; right < N; right++) {
+            int card = cards[right];
+
+            while(currentPack.contains(card)) {
+                currentPack.remove(cards[left]);
+                left++;
+            }
+
+            currentPack.add(card);
+
+            if (currentPack.size() == targetSize) {
+                packCnt++;
+
+                currentPack.clear();
+                left = right + 1;
+            }
         }
 
-        for (int v = N; v >= 0; v--) {
-            if(visited[v] <= 0) {
-                ans = v;
-                break;
-            }
-        }
+        return packCnt >= M;
     }
 
     static void output() throws IOException {
