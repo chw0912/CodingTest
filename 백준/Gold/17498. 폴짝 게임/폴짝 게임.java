@@ -1,3 +1,5 @@
+// G5. 폴짝 게임
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -13,6 +15,7 @@ public class Main {
     static int[][] board;
     static int[][] dp;
     static int ans = Integer.MIN_VALUE;
+    static final int MIN_VALUE = -(200_000 * 100 * 100 + 1);
 
     public static void main(String[] args) throws IOException {
         input();
@@ -35,7 +38,7 @@ public class Main {
                 board[n][m] = Integer.parseInt(st.nextToken());
             }
             if (n > 0) {
-                Arrays.fill(dp[n], Integer.MIN_VALUE);
+                Arrays.fill(dp[n], MIN_VALUE);
             }
         }
     }
@@ -47,28 +50,32 @@ public class Main {
         // 기준 좌표 (r, c)
         // 이동 좌표 (p, q)
         while (r < N) {
-            if(r==0 || dp[r][c] != Integer.MIN_VALUE) {
-                for (int p = r+1; p < N && (p - r) <= D; p++) {
-                    // startQ : 다음 칸으로 이동하고 왼쪽으로 남은 거리
-                    // endQ : 다음 칸으로 이동하고 오른쪽으로 남은 거리
-                    int distance = D - (p-r);
-                    int startQ = c - distance, endQ = c + distance;
+            // 언더플로우 발생 방지
+            // 예시
+            // dp[r][c] = Integer.MIN_VALUE일 경우,
+            // board[r][c] * board[p][q] = -100일 경우
+            // Integer.MIN_VALUE + (-100)으로 언더플로우 발생!!
+            for (int p = r+1; p < N && (p - r) <= D; p++) {
+                // startQ : 다음 행으로 이동하고 왼쪽으로 갈 수 있는 거리
+                // endQ : 다음 행으로 이동하고 오른쪽으로 갈 수 있는 거리
+                int distance = D - (p-r);
+                int startQ = c - distance, endQ = c + distance;
 
-                    // 열의 범위를 넘어간 경우 양 끝 좌표로 초기화
-                    if (startQ < 0) {
-                        startQ = 0;
-                    }
-
-                    if (endQ  >= M){
-                        endQ = M - 1;
-                    }
-
-                    // startQ 부터 endQ까지 돌면서 최대값 갱신
-                    for (int q = startQ; q <= endQ; q++) {
-                        dp[p][q] = Math.max(dp[p][q], dp[r][c] + (board[r][c] * board[p][q]));
-
-                    }
+                // 열의 범위를 넘어간 경우 양 끝 좌표로 초기화
+                if (startQ < 0) {
+                    startQ = 0;
                 }
+
+                if (endQ  >= M){
+                    endQ = M - 1;
+                }
+
+                // startQ 부터 endQ까지 돌면서 최대값 갱신
+                for (int q = startQ; q <= endQ; q++) {
+                    dp[p][q] = Math.max(dp[p][q], dp[r][c] + (board[r][c] * board[p][q]));
+
+                }
+
             }
 
             c++;
@@ -78,6 +85,7 @@ public class Main {
             }
         }
 
+        // 마지막 열 중 최대값을 ans에 갱신
         for (int i = 0; i < M; i++) {
             ans = Math.max(ans, dp[N-1][i]);
         }
