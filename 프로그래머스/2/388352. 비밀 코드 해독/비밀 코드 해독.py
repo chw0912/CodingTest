@@ -12,6 +12,7 @@ def solution(n, q, ans):
         for i in range(len(q)):
             if len(list(set(com) & set(q[i]))) != ans[i]:
                 flag = False
+                break
         
         if not flag:
             continue
