@@ -15,6 +15,7 @@ def dfs(stage, ticket, cost, hint, totalCost):
     # 현재 가지고 있는 힌트권 개수
     hintTicket = ticket[stage]
     
+    ##
     # 힌트권은 N-1개까지 사용가능
     if hintTicket >= len(cost):
         hintTicket = len(cost) - 1
