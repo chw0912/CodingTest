@@ -13,6 +13,7 @@ def solution(n, submit):
     
     return allCase[0]
 
+# 
 def insertAllCase():
     lst = list()
     for a in range(1, 10):
