@@ -3,7 +3,6 @@ def solution(picks, minerals):
     arr = []
     mineral=[0,0,0]
     
-    # 순회
     for i in range(len(minerals)):
         if i % 5 == 0 and i != 0:
             arr.append(mineral)
