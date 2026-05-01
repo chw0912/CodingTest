@@ -12,6 +12,7 @@ def dfs(index, sum_flavor = 0, sum_kal=0):
     dfs(index+1,sum_flavor + flavor, sum_kal +kal)
     dfs(index+1, sum_flavor, sum_kal)
 
+# 메인 로직
 for t in range(1,T+1):
     N, L = map(int, input().split())
     kal_list = [list(map(int, input().split())) for i in range(N)]
