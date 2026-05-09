@@ -1,40 +1,30 @@
+# D4. 자기 방으로 돌아가기
+
 T = int(input())
 
 for t in range(1, T+1):
     N = int(input())
+    ans = 0
+    room = [0 for _ in range(401)]
 
-    odd_rooms = [i for i in range(1,400,2)]
-    even_rooms = [i for i in range(2,401,2)]
-    empty_rooms = [0 for i in range(401)]
-    start = 0
-    end = 0
+    for _ in range(N):
+        start, arrive = map(int, input().split())
 
+        # swap
+        if start > arrive:
+            start, arrive = arrive, start
 
-    for i in range(N):
-        current, target = map(int, input().split())
+        if start % 2 == 0:
+            start -= 1
 
-        if current < target:
-            if current % 2 == 0:
-                start = even_rooms.index(current)
-            else:
-                start = odd_rooms.index(current)
-            if target % 2 == 0:
-                end = even_rooms.index(target)
-            else:
-                end = odd_rooms.index(target)
-        elif current > target:
-            if target % 2 == 0:
-                start = even_rooms.index(target)
-            else:
-                start = odd_rooms.index(target)
-            if current % 2 == 0:
-                end = even_rooms.index(current)
-            else:
-                end = odd_rooms.index(current)
-        else:
-            break
+        if arrive % 2 == 1:
+            arrive += 1
 
-        for j in range(start, end+1):
-            empty_rooms[j] += 1
+        for i in range(start, arrive + 1):
+            room[i] += 1
 
-    print(f'#{t} {max(empty_rooms)}')
+    for i in range(401):
+        if room[i] > ans:
+            ans = room[i]
+
+    print(f'#{t} {ans}')
