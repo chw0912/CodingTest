@@ -11,7 +11,8 @@ def solution(n, infection, edges, k):
     N = n
     K = k
     adj = [[] for _ in range(n+1)]
-    infected = [[] * 4] # 1 : A, 2 : B, 3: C
+    # 1 : A, 2 : B, 3: C
+    infected = [[] * 4] 
     
     for idx, nxt, pipe in edges:
         adj[idx].append((nxt, pipe))
