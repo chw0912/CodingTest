@@ -30,39 +30,3 @@ def solution(maps):
                 islands.append(dfs(r, c, int(maps[r][c])))
 
     return sorted(islands) if islands else [-1]
-
-# from collections import deque
-# dx = [-1, 1, 0, 0]
-# dy = [0, 0, -1, 1]  
-
-# def search(maps,x,y,height,width):
-#     answer = []
-#     dq = deque()
-#     dq.append((x, y))
-#     num=0
-#     while dq:
-#         x, y = dq.popleft()
-
-#         for i in range(4):
-#             nx = x + dx[i]
-#             ny = y + dy[i]
-
-#             if 0 <= nx < height and 0 <= ny < width:
-#                 if maps[nx][ny] != 'X' or maps[nx][ny] != '0':
-#                     num += int(maps[x][y])
-#                     maps[x][y] = '0'
-#                     dq.append((nx, ny))
-
-#     answer.append(num)
-#     return 
-        
-# def solution(maps):
-#     answer = []
-#     maps = [list(maps[i]) for i in range(len(maps))]
-    
-#     for x in range(len(maps)):
-#         for y in range(len(maps[0])):
-#             if maps[x][y] != 'X' or maps[x][y] != '0':
-#                 answer.append(search(maps,x,y,len(maps),len(maps[0])))
-            
-#     return maps
