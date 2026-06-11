@@ -10,6 +10,7 @@ def solution(n, infection, edges, k):
     
     N = n
     K = k
+    # 인접 리스트
     adj = [[] for _ in range(n+1)]
     # 1 : A, 2 : B, 3: C
     infected = [[] * 4] 
