@@ -3,7 +3,7 @@ import math
 def solution(signals):
     answer = 0
     cycle = []
-    cycle_lengths = [] # 각 신호등의 주기 길이를 저장할 리스트
+    cycle_lengths = []
     
     # 1. 신호등 주기 리스트 생성 및 주기 길이 계산
     for i in range(len(signals)):
