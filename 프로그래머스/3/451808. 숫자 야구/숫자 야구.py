@@ -13,7 +13,7 @@ def solution(n, submit):
     
     return allCase[0]
 
-# 모든 케이스
+# 모든 입력
 def insertAllCase():
     lst = list()
     for a in range(1, 10):
