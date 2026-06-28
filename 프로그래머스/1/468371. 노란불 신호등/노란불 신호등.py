@@ -9,7 +9,7 @@ def solution(signals):
     for i in range(len(signals)):
         length = sum(signals[i])
         cycle.append([0] * length)
-        cycle_lengths.append(length) # 주기 길이 저장
+        cycle_lengths.append(length)
         
     for idx, val in enumerate(signals):
         g = val[0]
