@@ -5,7 +5,6 @@ def solution(info, n, m):
     # 처음에는 아무것도 불가능하므로 모두 무한대로 초기화
     dp = [float('inf')] * n
     
-    # 아무 물건도 안 훔쳤을 때 A=0, B=0이므로 dp[0] = 0
     dp[0] = 0 
     
     for a, b in info:
