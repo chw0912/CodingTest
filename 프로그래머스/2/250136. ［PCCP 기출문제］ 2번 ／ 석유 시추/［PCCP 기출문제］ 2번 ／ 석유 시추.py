@@ -1,7 +1,8 @@
 from collections import deque
-# 상, 하, 좌, 우
+# 동, 서, 북, 남
 dx = [0, 0, -1, 1]
 dy = [1, -1, 0, 0]
+
 
 def solution(land):
     n = len(land)
@@ -32,6 +33,7 @@ def solution(land):
         for i in range(min_y, max_y + 1):
             result[i] += cnt
 
+    # test
     for i in range(n):
         for j in range(m):
             if land[i][j] == 1 and not visited[i][j]:
