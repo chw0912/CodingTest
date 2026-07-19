@@ -3,7 +3,9 @@ import java.util.*;
 class Solution {
     public String[] solution(String[] players, String[] callings) {
         String[] answer = {};
+        // 선수별 순위 저장
         Map<String,Integer> ranking = new HashMap<>();
+        
         
         for (int i = 0;i < players.length;i++) {
             ranking.put(players[i], i);
