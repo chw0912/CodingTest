@@ -2,7 +2,6 @@ def solution(dist_limit, split_limit):
     max_leaves = 1
     
     # 1. 탐색할 a와 b의 최대 범위를 구합니다.
-    # (분배도가 split_limit을 넘지 않는 선까지만 탐색하면 됩니다.)
     max_a = 0
     while (1 << max_a) <= split_limit:
         max_a += 1
