@@ -6,15 +6,13 @@ def solution(m, n, h, w, drops):
     
     rain = [INF] * total
     
-    # 2차원 배열을 1차원으로 압축
     for i in range(len(drops)):
         r, c = drops[i]
         rain[r * n + c] = i + 1
-        
+   
     new_n = n - w + 1
     row_min = [0] * (m * new_n)
-    
-    # 가로 슬라이딩 윈도우
+
     for r in range(m):
         dq = deque()
         
