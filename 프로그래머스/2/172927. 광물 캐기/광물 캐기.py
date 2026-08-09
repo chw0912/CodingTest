@@ -3,6 +3,7 @@ def solution(picks, minerals):
     arr = []
     mineral=[0,0,0]
     
+    # 광물 갯수 저장
     for i in range(len(minerals)):
         if i % 5 == 0 and i != 0:
             arr.append(mineral)
