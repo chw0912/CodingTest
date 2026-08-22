@@ -1,7 +1,9 @@
 from collections import deque
 
 def solution(m, n, h, w, drops):
+    # 총합
     total = m * n
+    # 최대값
     INF = len(drops)+1
     
     rain = [INF] * total
