@@ -6,7 +6,7 @@ def solution(cost, hint):
     
     return answer
 
-
+# 재귀
 def dfs(stage, ticket, cost, hint, totalCost):
     result = float('inf');
     if stage == len(cost):
