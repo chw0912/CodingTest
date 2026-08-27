@@ -1,6 +1,7 @@
 def solution(n, w, num):
     answer = 0
     
+    ##
     h = n// w + 1
     x = 1
     storage = list()
@@ -24,9 +25,9 @@ def solution(n, w, num):
     for i in range(len(storage)):
         for j in range(w):
             if storage[i][j] == num:
-                d = i
-                while d < h and storage[d][j]:
+                r = i
+                while r < h and storage[r][j]:
                     answer += 1
-                    d += 1
+                    r += 1
 
     return answer
