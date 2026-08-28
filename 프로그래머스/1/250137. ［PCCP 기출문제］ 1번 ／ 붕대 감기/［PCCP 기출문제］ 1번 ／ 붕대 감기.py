@@ -15,13 +15,13 @@ def solution(bandage, health, attacks):
     for i in range(len(attacks)):
         play_Time[attacks[i][0]] = attacks[i][1]
         
-    #연속 성공 횟수
+    # 연속 성공 횟수
     count = 0    
     for i in range(1,len(play_Time)):
         if play_Time[i] == 0:
             health += x
             count += 1
-            #연속 성공시
+            # 연속 성공시
             if count == t:
                 health += y
                 count = 0
