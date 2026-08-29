@@ -6,7 +6,7 @@ def solution(weights):
     
     for i in range(100, 1001):
         if counter[i] > 0:
-            answer += counter[i] * (counter[i] - 1) // 2 #같은 수
+            answer += counter[i] * (counter[i] - 1) // 2
             answer += counter[i] * counter[i * 3 / 2]
             answer += counter[i] * counter[i * 2]
             answer += counter[i] * counter[i * 4 / 3]
