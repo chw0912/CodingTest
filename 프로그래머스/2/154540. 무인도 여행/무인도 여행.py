@@ -1,6 +1,6 @@
 DIRS = ((-1, 0), (1, 0), (0, -1), (0, 1))
 
-
+##
 def solution(maps):
     MAX_R, MAX_C = len(maps), len(maps[0])
 
