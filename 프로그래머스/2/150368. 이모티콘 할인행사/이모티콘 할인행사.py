@@ -9,8 +9,7 @@ def solution(users, emoticons):
     
     return service(users, rateProd, emoticons)
 
-# 유저가 이모티콘 플러스 서비스를 가입할지
-# 개별 구매할지 계산하는 함수
+# 유저가 이모티콘 플러스 서비스를 가입할지 개별 구매할지 계산하는 함수
 def service(users, rateProd, emoticons):
     
     ans = [0,0]
