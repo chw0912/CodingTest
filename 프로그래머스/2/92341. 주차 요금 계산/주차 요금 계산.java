@@ -4,9 +4,7 @@ class Solution {
     public int[] solution(int[] fees, String[] records) {
         int[] answer = {};
         
-        // 차량 번호, 출입 시간
         Map<String,Integer> map = new HashMap<>();
-        // 차량 번호, 
         Map<String,Integer> feeMap = new HashMap<>();
         
         int baseTime = fees[0];
