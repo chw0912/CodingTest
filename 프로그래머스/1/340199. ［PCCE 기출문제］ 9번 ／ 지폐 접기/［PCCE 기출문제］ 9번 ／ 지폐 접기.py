@@ -4,10 +4,8 @@ def solution(wallet, bill):
     wallet.sort()
     
     while bill[0] > wallet[0] or bill[1] > wallet[1]:
-        
-        # 가로
+        # 지폐의 가로, 세로
         width = bill[0]
-        # 세로
         length = bill[1]
         
         if width >= length:
