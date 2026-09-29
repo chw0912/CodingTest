@@ -5,7 +5,6 @@ def solution(wallpaper):
     rdx = []
     rdy = []
     
-    # S 좌표, E 좌표
     for i in range(len(wallpaper)):
         for j in range(len(wallpaper[0])):
             if wallpaper[i][j] == '#':
