@@ -34,7 +34,7 @@ class Solution {
         return answer;
     }
     
-    // 시간
+    // 시간 추가
     public int timePlusTen(int time) {
         int plusTime = (time + 10) % 100;
         if (plusTime >= 60) {
