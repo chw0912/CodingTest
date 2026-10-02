@@ -3,9 +3,8 @@ def solution(sequence, k):
     cnt = 0
     r = 0
     
-    # solve
+    # 부분 수열
     for l in range(len(sequence)):
-        
         while cnt < k and r < len(sequence):
             cnt += sequence[r]
             r += 1
