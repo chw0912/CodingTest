@@ -6,7 +6,7 @@ def solution(k, tangerine):
     arr = Counter(tangerine)
     cnt = [v for v in arr.values()]
     
-    # 역으로 정렬하기
+    # 내림차순 정렬
     cnt.sort(reverse=True)
     
     for i in range(len(cnt)):
