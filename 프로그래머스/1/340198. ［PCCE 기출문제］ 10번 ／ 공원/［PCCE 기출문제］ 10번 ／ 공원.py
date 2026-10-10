@@ -3,9 +3,7 @@ def solution(mats, park):
     
     mats = sorted(mats, reverse=True)
 
-    # 돗자리
     for m in mats:
-        # 공원
         for i in range(len(park)-m+1):
             for j in range(len(park[0])-m+1):
                 if park[i][j] == "-1":
