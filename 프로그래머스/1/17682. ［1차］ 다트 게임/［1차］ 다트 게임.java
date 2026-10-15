@@ -18,6 +18,7 @@ class Solution {
                 score[idx] = Integer.parseInt(Character.toString(dart[i]));  
             }
             
+            // 다트
             switch(dart[i]) {
                 case 'D':  
                     score[idx] = (int) Math.pow(score[idx], 2);
