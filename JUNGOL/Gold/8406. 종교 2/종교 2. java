@@ -1,0 +1,82 @@
+// [Gold 5] 8406. 종교 2
+
+import java.io.*;
+import java.util.StringTokenizer;
+
+import static java.lang.System.in;
+import static java.lang.System.out;
+
+public class Main {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
+    static StringTokenizer st;
+    static int N, M, ans; // N : 학생 수, M : 쌍의 수
+    static int[] parents, group;
+    static int pairs;
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws IOException {
+        input();
+        solve();
+        output();
+    }
+
+    static void input() throws IOException {
+        st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        parents = new int[N+1];
+        group = new int[N+1];
+
+        for (int i = 1; i <= N; i++) {
+            parents[i] = i;
+            group[i] = 1;
+        }
+
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int command = Integer.parseInt(st.nextToken());
+
+            if (command == 1) {
+                int x = Integer.parseInt(st.nextToken());
+                int y = Integer.parseInt(st.nextToken());
+
+                union(x, y);
+            } else {
+                int a = Integer.parseInt(st.nextToken());
+                int root = find(a);
+                sb.append(group[root]).append("\n");
+            }
+
+
+        }
+    }
+
+    static void solve() {
+
+    }
+
+    static void output() throws IOException {
+        bw.write(sb.toString());
+        bw.flush();
+    }
+
+    static int find(int x) {
+        if (parents[x] == x) return x;
+
+        return parents[x] = find(parents[x]);
+    }
+
+    static void union(int x, int y) {
+        int fx = find(x);
+        int fy = find(y);
+
+        if (fx != fy) {
+            parents[fy] = fx;
+            group[fx] += group[fy];
+        }
+
+    }
+}
+
