@@ -22,7 +22,7 @@ class Solution {
                 break;
             }
             
-            
+            // 최고 점수 갱신
             if (group1 < Math.max(group1, cnt)) {               
                 group2 = group1;
                 group1 = cnt;
