@@ -1,3 +1,4 @@
+// 코틀린 풀이
 class Solution {
     fun solution(n: Int): String {
         var answer = ""
