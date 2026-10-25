@@ -2,7 +2,7 @@ def solution(arr, divisor):
     answer = []
     
     for a in arr:
-        # 몫이 0
+        # 나머지가 0
         if a % divisor == 0:
             answer.append(a)
     if len(answer) == 0:
