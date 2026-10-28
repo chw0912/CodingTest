@@ -1,3 +1,4 @@
+// 자바 풀이
 class Solution {
     public Boolean solution(int x) {
         int result = 0;
