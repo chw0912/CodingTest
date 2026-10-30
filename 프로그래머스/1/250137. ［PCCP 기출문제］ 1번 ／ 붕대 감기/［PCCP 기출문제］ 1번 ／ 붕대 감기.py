@@ -7,7 +7,6 @@ def solution(bandage, health, attacks):
     # 시전 시간, 초당 회복량, 추가 회복량 
     t, x, y = bandage
     
-    
     # 게임 시간 생성
     play_Time = [0] * (last_Time + 1)
     
