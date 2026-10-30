@@ -6,4 +6,5 @@ def solution(food):
                 answer += str(i)       
     
     reverse_str = "".join(reversed(answer))
-    return answer+'0'+reverse_str
+    
+    return answer + '0' + reverse_str
