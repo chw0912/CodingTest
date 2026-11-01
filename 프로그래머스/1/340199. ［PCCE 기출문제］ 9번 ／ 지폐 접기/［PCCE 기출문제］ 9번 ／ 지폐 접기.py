@@ -1,9 +1,10 @@
 def solution(wallet, bill):
-    answer = 0
     
+    answer = 0
     wallet.sort()
     
     while bill[0] > wallet[0] or bill[1] > wallet[1]:
+        
         # 지폐의 가로, 세로
         width = bill[0]
         length = bill[1]
