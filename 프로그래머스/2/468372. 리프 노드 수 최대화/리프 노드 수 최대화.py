@@ -28,8 +28,6 @@ def solution(dist_limit, split_limit):
             # 조건 2: 예산(dist_limit)을 초과하면 불가능한 트리이므로 패스
             if S > dist_limit:
                 continue
-                
-            # --- 유효한 트리 구조를 찾았습니다! 이제 3가지 경우의 수를 확인합니다 ---
             
             # 경우 A: 여기서 더 이상 분배하지 않고 멈추는 경우
             max_leaves = max(max_leaves, N)
