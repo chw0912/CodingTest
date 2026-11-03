@@ -3,15 +3,16 @@ class Solution {
     static boolean[] visited;
     
     public int solution(int k, int[][] dungeons) {
+        
         visited = new boolean[dungeons.length];
         
-        dfs(0,k,dungeons);
+        dfs(0, k, dungeons);
         
         return answer;
     }
     
-    // 피로도 계산
     public void dfs(int depth, int k, int[][] dungeons) {
+        
         for (int i = 0; i < dungeons.length; i++) {
             if (!visited[i] && dungeons[i][0] <= k) {
                 visited[i] = true;
@@ -19,6 +20,7 @@ class Solution {
                 visited[i] = false;
             }
         }
-        answer = Math.max(answer,depth);
+        
+        answer = Math.max(answer, depth);
     }
 }
