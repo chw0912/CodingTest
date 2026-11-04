@@ -1,11 +1,10 @@
 def solution(mats, park):
-    answer = -1
-    
+    answer = -1 
     mats = sorted(mats, reverse=True)
 
     for m in mats:
-        for i in range(len(park)-m+1):
-            for j in range(len(park[0])-m+1):
+        for i in range(len(park) - m + 1):
+            for j in range(len(park[0]) - m + 1):
                 if park[i][j] == "-1":
                     if check(park, m, i, j):
                         return m         
