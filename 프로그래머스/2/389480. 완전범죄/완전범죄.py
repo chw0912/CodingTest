@@ -16,12 +16,12 @@ def solution(info, n, m):
             if dp[i] == float('inf'):
                 continue
             
-            # 1. A가 이번 물건을 훔치는 경우
+            # A가 이번 물건을 훔치는 경우
             # A의 새 무게(i + a)가 n보다 작아야 함
             if i + a < n:
                 next_dp[i + a] = min(next_dp[i + a], dp[i])
             
-            # 2. B가 이번 물건을 훔치는 경우
+            # B가 이번 물건을 훔치는 경우
             # A의 무게는 그대로(i), B의 새 무게(dp[i] + b)가 m보다 작아야 함
             if dp[i] + b < m:
                 next_dp[i] = min(next_dp[i], dp[i] + b)
