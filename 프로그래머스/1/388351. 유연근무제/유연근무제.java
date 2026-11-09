@@ -2,7 +2,7 @@ class Solution {
     public int solution(int[] schedules, int[][] timelogs, int startday) {
         int answer = 0;
         
-        for (int i = 0; i <schedules.length; i++)  {
+        for (int i = 0; i < schedules.length; i++)  {
             int eventTime = timePlusTen(schedules[i]);
             boolean status = true;
             int start = startday;
@@ -22,19 +22,17 @@ class Solution {
                 if (timelogs[i][j] > eventTime) {
                     status = false;
                     break;
-                }
-                
+                } 
             }
+            
             if (status) {
                 answer++;
             }
-            
         }
         
         return answer;
     }
     
-    // 시간 추가
     public int timePlusTen(int time) {
         int plusTime = (time + 10) % 100;
         if (plusTime >= 60) {
