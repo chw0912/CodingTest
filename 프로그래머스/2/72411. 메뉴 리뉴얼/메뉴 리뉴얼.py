@@ -13,7 +13,9 @@ def solution(orders, course):
         counter = Counter(menus)
         
         if len(counter) > 0 and max(counter.values()) > 1:
+            
             for menu in counter:
+                
                 if counter[menu] == max(counter.values()):
                     answer.append(''.join(menu))
     
