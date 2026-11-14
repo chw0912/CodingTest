@@ -3,7 +3,7 @@ from collections import deque
 def solution(coin, cards):
     answer = 1
     n = len(cards)
-    s = n//3
+    s = n // 3
     
     
     hand = deque(cards[:s])
@@ -16,11 +16,11 @@ def solution(coin, cards):
         pending.append(deck.popleft())
         pending.append(deck.popleft())
         
-        if check(hand,hand,n+1):
+        if check(hand, hand, n + 1):
             pass
-        elif coin >= 1 and check(hand, pending, n+1):
+        elif coin >= 1 and check(hand, pending, n + 1):
             coin -= 1
-        elif coin >= 2 and check(pending, pending, n+1):
+        elif coin >= 2 and check(pending, pending, n + 1):
             coin -= 2
         else:
             break
@@ -34,9 +34,9 @@ def check(deck1, deck2, target):
     
     operand = set(deck2)
     for card in deck1:
-        if target-card in operand:
+        if target - card in operand:
             deck1.remove(card)
-            deck2.remove(target-card)
+            deck2.remove(target - card)
             return True
     
     return False
