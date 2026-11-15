@@ -6,7 +6,9 @@ def solution(n, submit):
         result = submit(num)
         
         parts = result.split()
+        
         strike = int(parts[0][0])
+        
         ball = int(parts[1][0])
         
         allCase = filterList(allCase, num, strike, ball)
