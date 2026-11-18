@@ -1,6 +1,7 @@
 from itertools import combinations
 
 def get_sums(dice_group):
+    
     if not dice_group:
         return {}
         
