@@ -1,5 +1,4 @@
 def solution(alp, cop, problems):
-    
     max_alp = 0
     max_cop = 0
     
