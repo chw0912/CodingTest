@@ -4,11 +4,9 @@ def solution(n, submit):
     while len(allCase) > 1:
         num = allCase[0]
         result = submit(num)
-        
         parts = result.split()
         
         strike = int(parts[0][0])
-        
         ball = int(parts[1][0])
         
         allCase = filterList(allCase, num, strike, ball)
@@ -18,6 +16,7 @@ def solution(n, submit):
 # 모든 입력
 def insertAllCase():
     lst = list()
+    
     for a in range(1, 10):
         for b in range(1,10):
             if a == b:
@@ -29,6 +28,7 @@ def insertAllCase():
                     if d == a or d == b or d == c:
                         continue
                     lst.append(1000*a + 100*b + 10*c + d)
+    
     return lst
 
 def filterList(lst, num, strike, ball):
