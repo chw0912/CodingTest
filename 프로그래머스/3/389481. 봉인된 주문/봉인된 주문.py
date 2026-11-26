@@ -1,6 +1,5 @@
 def solution(n, bans):
-    answer = ''
-    
+    answer = ""
     ban_nums = sorted([str_to_num(ban) for ban in bans])
     
     for ban in ban_nums:
@@ -11,6 +10,7 @@ def solution(n, bans):
         
     return num_to_str(n)
 
+# 문자를 숫자로
 def str_to_num(s):
     num = 0
     for i, char in enumerate(reversed(s)):
@@ -18,6 +18,7 @@ def str_to_num(s):
         
     return num
     
+# 숫자를 문자로
 def num_to_str(num):
     res = []
     while num > 0:
