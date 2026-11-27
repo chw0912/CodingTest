@@ -5,7 +5,6 @@ def solution(coin, cards):
     n = len(cards)
     s = n // 3
     
-    
     hand = deque(cards[:s])
     deck = deque(cards[s:])
     
@@ -31,8 +30,8 @@ def solution(coin, cards):
 
 # 체크
 def check(deck1, deck2, target):
-    
     operand = set(deck2)
+    
     for card in deck1:
         if target - card in operand:
             deck1.remove(card)
