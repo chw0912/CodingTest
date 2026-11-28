@@ -4,7 +4,6 @@ def solution(info, n, m):
     # dp[i] = A가 i만큼 훔쳤을 때, B가 훔친 최소 무게
     # 처음에는 아무것도 불가능하므로 모두 무한대로 초기화
     dp = [float('inf')] * n
-    
     dp[0] = 0 
     
     for a, b in info:
